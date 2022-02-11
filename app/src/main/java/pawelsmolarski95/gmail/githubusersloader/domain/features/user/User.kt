@@ -1,4 +1,4 @@
-package pawelsmolarski95.gmail.githubusersloader.ui.main.users
+package pawelsmolarski95.gmail.githubusersloader.domain.features.user
 
 data class User(
     val id: Long,

@@ -7,17 +7,17 @@ import androidx.recyclerview.widget.ListAdapter
 import pawelsmolarski95.gmail.githubusersloader.databinding.ListUsersBinding
 
 class UsersAdapter(
-) : ListAdapter<User, UsersViewHolder>(
+) : ListAdapter<UserUi, UsersViewHolder>(
     object :
-        DiffUtil.ItemCallback<User>() {
+        DiffUtil.ItemCallback<UserUi>() {
         override fun areItemsTheSame(
-            oldItem: User,
-            newItem: User
+            oldItem: UserUi,
+            newItem: UserUi
         ) = oldItem == newItem
 
         override fun areContentsTheSame(
-            oldItem: User,
-            newItem: User
+            oldItem: UserUi,
+            newItem: UserUi
         ) = oldItem == newItem
     }
 ) {
