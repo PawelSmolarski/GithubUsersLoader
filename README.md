@@ -8,4 +8,5 @@ Github's API has limitations of number of possible sent requests. To omit this l
 In the build.gradle file there is Config Field named "API_TOKEN". There is possibility to provide own authentication token.
 E.g. 
 
-buildConfigField "String", "API_TOKEN", "\"Bearer xyz\"", where xyz is ones token. Please pay attention for "Bearer" prefix.
+buildConfigField "String", "API_TOKEN", "\"Bearer xyz\"", 
+where xyz is ones token. Please pay attention for "Bearer" prefix.
