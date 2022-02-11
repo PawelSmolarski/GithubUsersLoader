@@ -19,6 +19,11 @@
         <item name="android:textSize">@dimen/normal_text_size</item>
     </style>
 
+    <style name="SecondaryRegularText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+    </style>
+
     <style name="PrimaryRegularText.Bold" parent="PrimaryRegularText">
         <item name="android:textStyle">bold</item>
     </style>

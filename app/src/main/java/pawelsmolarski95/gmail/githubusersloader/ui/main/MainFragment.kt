@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import pawelsmolarski95.gmail.githubusersloader.databinding.FragmentMainBinding
 import pawelsmolarski95.gmail.githubusersloader.ui.main.users.UsersAdapter
+import pawelsmolarski95.gmail.githubusersloader.ui.shared.KeyboardUtil.hideKeyboard
 import pawelsmolarski95.gmail.githubusersloader.ui.shared.gone
 import pawelsmolarski95.gmail.githubusersloader.ui.shared.visible
 
@@ -71,13 +73,40 @@ class MainFragment : Fragment() {
     private fun initView() {
         initListeners()
         initList()
+        initSearchEditText()
     }
 
     private fun initListeners() {
         binding.mainRepeatLayout.setOnClickListener {
             binding.mainRepeatLayout.gone()
-            viewModel.loadData()
+            viewModel.loadAllUsers()
         }
+
+        binding.mainSearchIcon.setOnClickListener {
+            performSearch()
+        }
+
+        binding.mainSearchClose.setOnClickListener {
+            clearSearchText()
+        }
+    }
+
+    private fun clearSearchText() {
+        binding.mainSearchEditField.text = null
+    }
+
+    private fun initSearchEditText() {
+        binding.mainSearchEditField.setOnEditorActionListener { textView, actionId, keyEvent ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                performSearch()
+            }
+            false
+        }
+    }
+
+    private fun performSearch() {
+        hideKeyboard()
+        viewModel.loadUsersByQuery(binding.mainSearchEditField.text?.toString() ?: "")
     }
 
     private fun initList() {

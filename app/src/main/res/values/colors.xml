@@ -3,5 +3,8 @@
     <color name="colorPrimary">#000000</color>
     <color name="colorSecondary">#FFFFFF</color>
 
+    <color name="progressColor">#F44336</color>
+
     <color name="primaryTextColor">#FFFFFF</color>
+    <color name="secondaryTextColor">#000000</color>
 </resources>

@@ -10,6 +10,10 @@ class AppInitializer : Initializer<Unit> {
         LogInitializer::class.java,
     )
 
+    private val requiredInitializers = listOf(
+        DatabaseInitializer::class.java,
+    )
+
     override fun create(context: Context) {
         // nop
     }
@@ -19,6 +23,7 @@ class AppInitializer : Initializer<Unit> {
         if (BuildConfig.DEBUG) {
             dependencies.addAll(devOnlyInitializers)
         }
+        dependencies.addAll(requiredInitializers)
         return dependencies
     }
 }

@@ -4,4 +4,6 @@
     <string name="users_avatar_description">User\'s avatar</string>
 
     <string name="common_repeat_hint">Click to try again!</string>
+    <string name="common_clear_text_description">Click to clear text</string>
+    <string name="common_search_description">Click to search</string>
 </resources>
