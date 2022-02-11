@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GithubUsersLoader</string>
+
+    <string name="users_avatar_description">User\'s avatar</string>
+
+    <string name="common_repeat_hint">Click to try again!</string>
 </resources>

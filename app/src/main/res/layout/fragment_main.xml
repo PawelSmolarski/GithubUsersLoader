@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorSecondary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MainFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainUserList"
+        android:layout_marginTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_users" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/mainRepeatLayout"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:text="@string/common_repeat_hint"
+            style="@style/PrimaryRegularText.Bold"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainLoader"
+        android:visibility="gone"
+        android:indeterminateTint="@color/colorPrimary"
+        android:layout_gravity="center" />
+
+</FrameLayout>
