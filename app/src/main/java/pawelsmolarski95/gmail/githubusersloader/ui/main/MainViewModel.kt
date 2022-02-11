@@ -7,9 +7,9 @@ import pawelsmolarski95.gmail.githubusersloader.ui.main.users.UserUi
 import pawelsmolarski95.gmail.githubusersloader.ui.main.users.toUi
 import pawelsmolarski95.gmail.githubusersloader.ui.shared.launchSafeWithViewModelScope
 
-class MainViewModel : ViewModel() {
-    private val loadUsersUseCase = LoadUsersUseCase()
-
+class MainViewModel(
+    private val loadUsersUseCase: LoadUsersUseCase = LoadUsersUseCase()
+) : ViewModel() {
     val users = MutableLiveData<Result<List<UserUi>>>()
     val isDataLoading = MutableLiveData<Boolean>()
 

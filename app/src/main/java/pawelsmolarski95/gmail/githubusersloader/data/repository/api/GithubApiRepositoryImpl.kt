@@ -12,7 +12,7 @@ class GithubApiRepositoryImpl(
         return githubService.getUsers()
     }
 
-    override suspend fun getUserRepose(login: String, reposAmount: Int): List<UserReposResponseModel> {
+    override suspend fun getUserRepos(login: String, reposAmount: Int): List<UserReposResponseModel> {
         return githubService.getReposForUser(login, reposAmount)
     }
 }

@@ -7,9 +7,9 @@ import pawelsmolarski95.gmail.githubusersloader.data.room.UsersDatabase
 import pawelsmolarski95.gmail.githubusersloader.domain.features.user.User
 import pawelsmolarski95.gmail.githubusersloader.domain.repository.local.UsersLocalRepository
 
-class UsersLocalRepositoryImpl : UsersLocalRepository {
+class UsersLocalRepositoryImpl(
     private val database: UsersDatabase = DataModule.provideUsersDatabase()
-
+) : UsersLocalRepository {
     override suspend fun getUsersWithRepos(): List<User> {
         return database.usersDao().getAllUsers().toUsers()
     }

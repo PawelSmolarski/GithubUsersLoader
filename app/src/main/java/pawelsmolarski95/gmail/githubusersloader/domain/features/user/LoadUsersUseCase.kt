@@ -6,17 +6,15 @@ import pawelsmolarski95.gmail.githubusersloader.domain.repository.api.GithubApiR
 import pawelsmolarski95.gmail.githubusersloader.domain.repository.local.UsersLocalRepository
 import pawelsmolarski95.gmail.githubusersloader.domain.shared.asyncMap
 
-class LoadUsersUseCase {
-    private val githubApiRepository: GithubApiRepository =
-        ApiRepositoryModule.provideGithubApiRepository()
-
-    private val usersLocalRepository: UsersLocalRepository =
-        DataModule.provideUsersLocalRepository()
-
+class LoadUsersUseCase(
+    private val githubApiRepository: GithubApiRepository = ApiRepositoryModule.provideGithubApiRepository(),
+    private val usersLocalRepository: UsersLocalRepository = DataModule.provideUsersLocalRepository()
+) {
     companion object {
         private const val numberOfLoadedUsers: Int = 30
         private const val numberOfLoadedRepos: Int = 3
     }
+
     suspend fun getAllUsers(): List<User> {
         return try {
             getUsersFromApi()
@@ -27,10 +25,15 @@ class LoadUsersUseCase {
 
     suspend fun getUsersByQuery(query: String): List<User> {
         return getAllUsers().filter { user ->
-            user.name.contains(query) || user.repoNames.any { repo ->
-                repo.contains(query)
-            }
+            shouldReturn(user, query)
         }
+    }
+
+    private fun shouldReturn(
+        user: User,
+        query: String
+    ) = user.name.contains(query) || user.repoNames.any { repo ->
+        repo.contains(query)
     }
 
     private suspend fun getUsersFromLocalCache(): List<User> {
@@ -42,7 +45,7 @@ class LoadUsersUseCase {
         .take(numberOfLoadedUsers)
         .asyncMap { userResponseModel ->
             val login = userResponseModel.login
-            val repos = githubApiRepository.getUserRepose(login, numberOfLoadedRepos).map {
+            val repos = githubApiRepository.getUserRepos(login, numberOfLoadedRepos).map {
                 it.name
             }
 

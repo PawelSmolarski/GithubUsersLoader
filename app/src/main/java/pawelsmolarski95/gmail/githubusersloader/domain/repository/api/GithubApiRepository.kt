@@ -6,5 +6,5 @@ import pawelsmolarski95.gmail.githubusersloader.domain.model.UsersResponseModel
 interface GithubApiRepository {
     suspend fun getUsers(): List<UsersResponseModel>
 
-    suspend fun getUserRepose(login: String, reposAmount: Int): List<UserReposResponseModel>
+    suspend fun getUserRepos(login: String, reposAmount: Int): List<UserReposResponseModel>
 }
