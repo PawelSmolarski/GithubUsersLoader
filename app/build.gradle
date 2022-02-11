@@ -22,6 +22,9 @@ android {
 
     buildTypes {
         debug {
+            lintOptions {
+                abortOnError false
+            }
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
