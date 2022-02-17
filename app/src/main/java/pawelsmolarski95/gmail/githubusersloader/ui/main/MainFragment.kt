@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import pawelsmolarski95.gmail.githubusersloader.databinding.FragmentMainBinding
+import pawelsmolarski95.gmail.githubusersloader.ui.main.users.UserUiState
 import pawelsmolarski95.gmail.githubusersloader.ui.main.users.UsersAdapter
 import pawelsmolarski95.gmail.githubusersloader.ui.shared.KeyboardUtil.hideKeyboard
 import pawelsmolarski95.gmail.githubusersloader.ui.shared.gone
@@ -43,29 +44,23 @@ class MainFragment : Fragment() {
     }
 
     private fun initObservers() {
-        initLoadingObserver()
         initUsersDataObserver()
     }
 
     private fun initUsersDataObserver() {
-        viewModel.users.observe(viewLifecycleOwner, {
-            it.fold(
-                onSuccess = { users ->
-                    usersAdapter?.submitList(users)
-                },
-                onFailure = {
+        viewModel.usersUiState.observe(viewLifecycleOwner, { userUiState ->
+            when (userUiState) {
+                is UserUiState.Error -> {
+                    binding.mainLoader.gone()
                     binding.mainRepeatLayout.visible()
                 }
-            )
-        })
-    }
-
-    private fun initLoadingObserver() {
-        viewModel.isDataLoading.observe(viewLifecycleOwner, {
-            if (it) {
-                binding.mainLoader.visible()
-            } else {
-                binding.mainLoader.gone()
+                UserUiState.Loading -> {
+                    binding.mainLoader.visible()
+                }
+                is UserUiState.Success -> {
+                    binding.mainLoader.gone()
+                    usersAdapter?.submitList(userUiState.usersUi)
+                }
             }
         })
     }

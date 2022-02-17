@@ -2,11 +2,12 @@ package pawelsmolarski95.gmail.githubusersloader
 
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.doReturn
 import org.mockito.Mockito.doThrow
-import org.mockito.MockitoAnnotations
+import org.mockito.junit.MockitoJUnit
 import pawelsmolarski95.gmail.githubusersloader.domain.features.user.LoadUsersUseCase
 import pawelsmolarski95.gmail.githubusersloader.domain.features.user.User
 import pawelsmolarski95.gmail.githubusersloader.domain.model.UserReposResponseModel
@@ -23,9 +24,12 @@ class LoadUsersUseCaseTest {
 
     private lateinit var loadUsersUseCase: LoadUsersUseCase
 
+    @Rule
+    @JvmField
+    var mockitoJUnitRule = MockitoJUnit.rule()
+
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
         loadUsersUseCase = LoadUsersUseCase(githubApiRepository, usersLocalRepository)
     }
 
