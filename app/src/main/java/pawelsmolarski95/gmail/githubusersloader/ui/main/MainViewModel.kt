@@ -20,7 +20,7 @@ class MainViewModel(
         launchSafeWithViewModelScope(
             run = {
                 usersUiState.value = UserUiState.Loading
-                usersUiState.value = UserUiState.Success(loadUsersUseCase.getAllUsers().toUi())
+                usersUiState.value = UserUiState.Success(loadUsersUseCase.getAllUsers().toUi(), "")
             },
             onError = {
                 usersUiState.value = UserUiState.Error(it)
@@ -32,7 +32,7 @@ class MainViewModel(
         launchSafeWithViewModelScope(
             run = {
                 usersUiState.value = UserUiState.Loading
-                usersUiState.value = UserUiState.Success(loadUsersUseCase.getUsersByQuery(query).toUi())
+                usersUiState.value = UserUiState.Success(loadUsersUseCase.getUsersByQuery(query).toUi(), query)
             },
             onError = {
                 usersUiState.value = UserUiState.Error(it)
